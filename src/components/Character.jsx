@@ -14,7 +14,7 @@ export const Character = () => {
   return (
     <>
         <KeyboardControls map={keyboardMap}>
-            <Controller maxVelLimit={5}>
+            <Controller maxVelLimit={5} disableFollowCam disableFollowCamPos={{x: 0, y: 6, z: -6 }}>
               <Gltf castShadow receiveShadow scale={0.315} position={[0, -0.55, 0]} src="/ghost_w_tophat-transformed.glb" />
             </Controller>
           </KeyboardControls>

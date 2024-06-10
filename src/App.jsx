@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unknown-property */
-import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 import { Experience } from "./components/Experience";
 
 export const Controls = {
@@ -14,28 +13,19 @@ export const Controls = {
 };
 
 function App() {
-  const map = useMemo(
-    () => [
-      { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
-      { name: Controls.back, keys: ["ArrowDown", "KeyS"] },
-      { name: Controls.left, keys: ["ArrowLeft", "KeyA"] },
-      { name: Controls.right, keys: ["ArrowRight", "KeyD"] },
-      { name: Controls.jump, keys: ["Space"] },
-    ],
-    []
-  );
 
   return (
-    <KeyboardControls map={map}>
-      <Canvas shadows camera={{ position: [10, 10, 10], fov: 30 }}>
+      <Canvas shadows camera={{ position: [5, 5, 5], fov: 100, rotation: false }}>
         <color attach="background" args={["#ececec"]} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[-10, 10, 0]} intensity={0.4} />
+        
         <Suspense>
           <Physics debug>
             <Experience />
           </Physics>
         </Suspense>
       </Canvas>
-    </KeyboardControls>
   );
 }
 
